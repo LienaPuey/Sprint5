@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8">
@@ -37,10 +38,6 @@
         }
       }
     </style>
-
-    
-    <!-- Custom styles for this template -->
-    <link href="heroes.css" rel="stylesheet">
   </head>
   <body>
     
@@ -48,11 +45,11 @@
         <div class="containerJokes d-flex justify-content-center rounded shadow">
 
             <div class="px-5 py-5 my-5 text-center">
-                <h1 class="display-5 fw-bold py-3 px-3">Joke of the day</h1>
+                <h1 class="display-5 fw-bold py-3 px-3">Wanna laugh?</h1>
                 <div class="col-lg-6 mx-auto">
-                <p id="printJoke" class="lead mb-4 py-3"></p>
+                <div id="jokeDiv" class="lead mb-4 py-3">sss</div>
                 <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
-                    <button id="jokeBtn" type="button" class="btn btn-primary btn-lg px-4 gap-3">Next Joke</button>
+                    <button id="jokeBtn" type="button" class="btn btn-primary btn-lg px-4 gap-3" onclick="showJoke()">Next Joke</button>
                 </div>
                 </div>
             </div>
