@@ -11,11 +11,30 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 const API_URL = "https://icanhazdadjoke.com/";
 const jokeBtn = document.getElementById("jokeBtn");
 const jokeDiv = document.getElementById("jokeDiv");
+const tempInfo = document.getElementById("tempInfo");
+const tempIcon = document.getElementById("tempIcon");
+const API_KEY = '1c9c6cb101e7e4d9930b3d50a680e21a';
+//______________________________WEATHER_____________________________
+function getWeather() {
+    navigator.geolocation.getCurrentPosition((success) => {
+        let { latitude, longitude } = success.coords;
+        fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=metric&appid=${API_KEY}`)
+            .then(response => response.json())
+            .then(data => {
+            let { temp } = data.main;
+            tempInfo.innerHTML = `${Math.trunc(temp)}ºC`;
+            let icon = data.weather[0].icon;
+            tempIcon.src = `http://openweathermap.org/img/wn/${icon}@2x.png`;
+        });
+    });
+}
+getWeather();
 const headerApi = {
     headers: {
         Accept: "application/json",
     }
 };
+//______________________________JOKES______________________________
 const reportJokes = [];
 const date = new Date().toISOString();
 let joke = "";

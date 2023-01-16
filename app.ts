@@ -1,11 +1,36 @@
 const API_URL: string = "https://icanhazdadjoke.com/"
 const jokeBtn:any = document.getElementById("jokeBtn");
 const jokeDiv: HTMLElement | any = document.getElementById("jokeDiv");
+const tempInfo: any = document.getElementById("tempInfo");
+const tempIcon: any = document.getElementById("tempIcon");
+const API_KEY:string = '1c9c6cb101e7e4d9930b3d50a680e21a';
+
+//______________________________WEATHER_____________________________
+
+function getWeather () {
+  navigator.geolocation.getCurrentPosition((success)=>{
+    let {latitude, longitude} = success.coords;
+
+    fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=metric&appid=${API_KEY}`)
+    .then(response => response.json())
+    .then(data => {
+      let {temp} = data.main;
+      tempInfo.innerHTML= `${Math.trunc(temp)}ºC`;
+      let icon = data.weather[0].icon;
+      tempIcon.src=`http://openweathermap.org/img/wn/${icon}@2x.png`;
+    })
+  })
+}
+getWeather();
 const headerApi = {
   headers: {
     Accept: "application/json",
   }
 }
+
+
+//______________________________JOKES______________________________
+
 const reportJokes: {joke: string, score:number, date:string}[]=[];
 const date :string = new Date().toISOString();
 let joke:string = "";
@@ -39,3 +64,5 @@ function scoreBtn(score:number) {
   reportJokes.push(scoreJoke);
   console.log(reportJokes);
 }
+
+
