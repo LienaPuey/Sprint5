@@ -1,5 +1,14 @@
 .containerJokes {
     position: absolute; /* or absolute */
-    top: 25%;
-    left: 36%;
+    top: 20%;
+    left: 33%;
+    right: 33%;
+}
+.scoreBtn {
+    background: none;
+    border: 0;
+    transition: transform .2s;
+}
+.scoreBtn:hover {
+    transform: scale(1.5);
 }

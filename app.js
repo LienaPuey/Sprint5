@@ -10,31 +10,39 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 const API_URL = "https://icanhazdadjoke.com/";
 const jokeBtn = document.getElementById("jokeBtn");
-const jokeDiv = document.getElementById("joke");
+const jokeDiv = document.getElementById("jokeDiv");
 const headerApi = {
     headers: {
         Accept: "application/json",
     }
 };
-// fetch(API_URL, {
-//     headers: {
-//          Accept: "application/json",
-//        }
-//  })
-//  .then(response => response.json())
-//  .then(data=> { 
-//     jokeDiv.innerHTML=`<p>${data.joke}</p>`;
-//     console.log(data.joke);
-// });
+const reportJokes = [];
+const date = new Date().toISOString();
+let joke = "";
 const showJoke = () => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const respuesta = yield fetch(API_URL, headerApi);
         if (respuesta.status === 200) {
             const data = yield respuesta.json();
-            jokeDiv.innerHTML = data.joke;
+            joke = data.joke;
+            jokeBtn.innerHTML = "Next joke";
+            jokeDiv.innerHTML = `
+      <p>${data.joke}</p>
+      <button id="score1" onclick="scoreBtn(1)" class="scoreBtn">😓</button>
+      <button id="score2" onclick="scoreBtn(2)" class="scoreBtn">😐</button>
+      <button id="score3" onclick="scoreBtn(3)" class="scoreBtn">😆</button>`;
         }
     }
     catch (error) {
         console.log(error);
     }
 });
+function scoreBtn(score) {
+    let scoreJoke = {
+        joke: joke,
+        score: score,
+        date: date
+    };
+    reportJokes.push(scoreJoke);
+    console.log(reportJokes);
+}
