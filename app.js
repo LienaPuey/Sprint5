@@ -65,3 +65,31 @@ function scoreBtn(score) {
     reportJokes.push(scoreJoke);
     console.log(reportJokes);
 }
+const chuckJoke = () => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const response = yield fetch('https://api.chucknorris.io/jokes/random', headerApi);
+        if (response.status === 200) {
+            const data = yield response.json();
+            joke = data.value;
+            jokeBtn.innerHTML = "Next joke";
+            jokeDiv.innerHTML = `
+      <p>${data.value}</p>
+      <button id="score1" onclick="scoreBtn(1)" class="scoreBtn">😓</button>
+      <button id="score2" onclick="scoreBtn(2)" class="scoreBtn">😐</button>
+      <button id="score3" onclick="scoreBtn(3)" class="scoreBtn">😆</button>`;
+        }
+    }
+    catch (error) {
+        console.log(error);
+    }
+});
+function randomJoke() {
+    let random = Math.floor(Math.random() * (10 - 1 + 1)) + 1;
+    if (random <= 5) {
+        showJoke();
+    }
+    else {
+        chuckJoke();
+    }
+}
+//___________________________BLOBS________________________
