@@ -4,7 +4,7 @@ const jokeDiv: HTMLElement | any = document.getElementById("jokeDiv");
 const tempInfo: any = document.getElementById("tempInfo");
 const tempIcon: any = document.getElementById("tempIcon");
 const API_KEY:string = '1c9c6cb101e7e4d9930b3d50a680e21a';
-const blobContainer:any = document.getElementsByClassName('containerJokes');
+const blobContainer:any = document.getElementById('containerJokes');
 //______________________________WEATHER_____________________________
 
 function getWeather () {
@@ -45,9 +45,11 @@ const showJoke = async() => {
       jokeBtn.innerHTML = "Next joke";
       jokeDiv.innerHTML= `
       <p>${data.joke}</p>
+      <div>
       <button id="score1" onclick="scoreBtn(1)" class="scoreBtn">😓</button>
       <button id="score2" onclick="scoreBtn(2)" class="scoreBtn">😐</button>
-      <button id="score3" onclick="scoreBtn(3)" class="scoreBtn">😆</button>`
+      <button id="score3" onclick="scoreBtn(3)" class="scoreBtn">😆</button>
+      </div>`
     }
 
   } catch(error) {
@@ -75,9 +77,11 @@ const chuckJoke =async () => {
       jokeBtn.innerHTML = "Next joke";
       jokeDiv.innerHTML= `
       <p>${data.value}</p>
+      <div>
       <button id="score1" onclick="scoreBtn(1)" class="scoreBtn">😓</button>
       <button id="score2" onclick="scoreBtn(2)" class="scoreBtn">😐</button>
-      <button id="score3" onclick="scoreBtn(3)" class="scoreBtn">😆</button>`
+      <button id="score3" onclick="scoreBtn(3)" class="scoreBtn">😆</button>
+      </div>`
     }
   }catch(error){
     console.log(error);
@@ -105,8 +109,6 @@ function getRandomBlob(){
   randomBlob[2]= './assets/blobs/blob_4.svg';
   randomBlob[3]= './assets/blobs/blob_5.svg';
   randomBlob[4]= './assets/blobs/blob_6.svg';
-  console.log(randomBlob);
   var number = Math.floor(Math.random()*randomBlob.length); 
-  console.log(number);
-  blobContainer.style.backgroundImage= `url(${randomBlob[number]})`;
+  blobContainer.style.backgroundImage = `url(${randomBlob[number]})`;
 }

@@ -1,12 +1,19 @@
-.containerJokes {
-    position: absolute; /* or absolute */
-    top: 20%;
-    left: 33%;
-    right: 33%;
+header{
+    font-weight: bold;
+}
+#containerJokes {
     background-image: url('./assets/blobs/blob_1.svg');
+    display: flex;
+    flex-direction: column;
+    height: 90vh;
+    margin: auto;
+    align-items: center;
+    justify-content: center;
+    background-color: #ffffff;
     background-repeat: no-repeat;
-    background-size: 100%;
-    height: 70rem;
+    background-position: center;
+    background-size: contain;
+    color:#e5def8;
 
 }
 .scoreBtn {
@@ -18,3 +25,37 @@
     transform: scale(1.5);
 }
 
+p{
+    max-width: 100%;
+    display: flex;
+    align-self: center;
+    font-weight: bold;
+
+}
+#jokeBtn {
+    transition: transform .2s;
+    background-color: rgb(233, 218, 84);
+    border: none;
+    position: relative;
+    margin-top: 5px;
+    z-index: 1;
+    border-radius: 50px;
+    font-weight: bold;
+    padding: 10px;
+    color:black;
+}
+#jokeBtn:hover {
+    transform: scale(1.1);
+}
+#jokeBtn::before{
+    top: -3px;
+    left: -3px;
+    content: "";
+    width: 100%;
+    height: 100%;
+    border-radius: 50px;
+    background-color:transparent;
+    border: solid black 2px;
+    position: absolute;
+    z-index: 2;
+}

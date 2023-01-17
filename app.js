@@ -14,7 +14,7 @@ const jokeDiv = document.getElementById("jokeDiv");
 const tempInfo = document.getElementById("tempInfo");
 const tempIcon = document.getElementById("tempIcon");
 const API_KEY = '1c9c6cb101e7e4d9930b3d50a680e21a';
-const blobContainer = document.getElementsByClassName('containerJokes');
+const blobContainer = document.getElementById('containerJokes');
 //______________________________WEATHER_____________________________
 function getWeather() {
     navigator.geolocation.getCurrentPosition((success) => {
@@ -48,9 +48,11 @@ const showJoke = () => __awaiter(void 0, void 0, void 0, function* () {
             jokeBtn.innerHTML = "Next joke";
             jokeDiv.innerHTML = `
       <p>${data.joke}</p>
+      <div>
       <button id="score1" onclick="scoreBtn(1)" class="scoreBtn">😓</button>
       <button id="score2" onclick="scoreBtn(2)" class="scoreBtn">😐</button>
-      <button id="score3" onclick="scoreBtn(3)" class="scoreBtn">😆</button>`;
+      <button id="score3" onclick="scoreBtn(3)" class="scoreBtn">😆</button>
+      </div>`;
         }
     }
     catch (error) {
@@ -75,9 +77,11 @@ const chuckJoke = () => __awaiter(void 0, void 0, void 0, function* () {
             jokeBtn.innerHTML = "Next joke";
             jokeDiv.innerHTML = `
       <p>${data.value}</p>
+      <div>
       <button id="score1" onclick="scoreBtn(1)" class="scoreBtn">😓</button>
       <button id="score2" onclick="scoreBtn(2)" class="scoreBtn">😐</button>
-      <button id="score3" onclick="scoreBtn(3)" class="scoreBtn">😆</button>`;
+      <button id="score3" onclick="scoreBtn(3)" class="scoreBtn">😆</button>
+      </div>`;
         }
     }
     catch (error) {
@@ -103,8 +107,6 @@ function getRandomBlob() {
     randomBlob[2] = './assets/blobs/blob_4.svg';
     randomBlob[3] = './assets/blobs/blob_5.svg';
     randomBlob[4] = './assets/blobs/blob_6.svg';
-    console.log(randomBlob);
     var number = Math.floor(Math.random() * randomBlob.length);
-    console.log(number);
     blobContainer.style.backgroundImage = `url(${randomBlob[number]})`;
 }
