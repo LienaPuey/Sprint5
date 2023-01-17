@@ -4,7 +4,7 @@ const jokeDiv: HTMLElement | any = document.getElementById("jokeDiv");
 const tempInfo: any = document.getElementById("tempInfo");
 const tempIcon: any = document.getElementById("tempIcon");
 const API_KEY:string = '1c9c6cb101e7e4d9930b3d50a680e21a';
-
+const blobContainer:any = document.getElementsByClassName('containerJokes');
 //______________________________WEATHER_____________________________
 
 function getWeather () {
@@ -89,10 +89,24 @@ function randomJoke() {
   let random = Math.floor(Math.random() * (10 - 1 + 1)) + 1;
   if(random <=5){
     showJoke();
-  }else {
+    getRandomBlob();
+  }else{
     chuckJoke();
+    getRandomBlob();
   }
 }
 
 //___________________________BLOBS________________________
 
+function getRandomBlob(){
+  let randomBlob:string[] = new Array();
+  randomBlob[0]= './assets/blobs/blob_2.svg';
+  randomBlob[1]= './assets/blobs/blob_3.svg';
+  randomBlob[2]= './assets/blobs/blob_4.svg';
+  randomBlob[3]= './assets/blobs/blob_5.svg';
+  randomBlob[4]= './assets/blobs/blob_6.svg';
+  console.log(randomBlob);
+  var number = Math.floor(Math.random()*randomBlob.length); 
+  console.log(number);
+  blobContainer.style.backgroundImage= `url(${randomBlob[number]})`;
+}

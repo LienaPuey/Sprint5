@@ -3,6 +3,11 @@
     top: 20%;
     left: 33%;
     right: 33%;
+    background-image: url('./assets/blobs/blob_1.svg');
+    background-repeat: no-repeat;
+    background-size: 100%;
+    height: 70rem;
+
 }
 .scoreBtn {
     background: none;
@@ -12,3 +17,4 @@
 .scoreBtn:hover {
     transform: scale(1.5);
 }
+
