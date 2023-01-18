@@ -24,9 +24,20 @@ header{
 .scoreBtn:hover {
     transform: scale(1.5);
 }
-
+input { 
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+  label{
+    cursor: pointer;
+  }
+  input:checked + label {
+    outline: 3px solid rgb(0, 0, 0);
+  }
 p{
-    max-width: 100%;
+    max-width: 70%;
     display: flex;
     align-self: center;
     font-weight: bold;

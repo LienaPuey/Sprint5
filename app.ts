@@ -34,6 +34,13 @@ const headerApi = {
 const reportJokes: {joke: string, score:number, date:string}[]=[];
 const date :string = new Date().toISOString();
 let joke:string = "";
+let score: 1|2|3;
+const btnScores =  `
+<div>
+<label class="scoreBtn"><input name="emoji" type="radio" value="1" id="score1">😓</label>
+<label class="scoreBtn"><input name="emoji" type="radio" value="2" id="score2" >😐</label>
+<label class="scoreBtn"><input name="emoji" type="radio" value="3" id="score3">😆</label>
+</div>`;
 
 const showJoke = async() => {
   try {
@@ -44,12 +51,7 @@ const showJoke = async() => {
       joke = data.joke;
       jokeBtn.innerHTML = "Next joke";
       jokeDiv.innerHTML= `
-      <p>${data.joke}</p>
-      <div>
-      <button id="score1" onclick="scoreBtn(1)" class="scoreBtn">😓</button>
-      <button id="score2" onclick="scoreBtn(2)" class="scoreBtn">😐</button>
-      <button id="score3" onclick="scoreBtn(3)" class="scoreBtn">😆</button>
-      </div>`
+      <p>${data.joke}</p>`+ btnScores;
     }
 
   } catch(error) {
@@ -57,18 +59,15 @@ const showJoke = async() => {
   }
 }
 
-function scoreBtn(score:number) {
-  let scoreJoke = {
-    joke: joke,
-    score: score,
-    date: date
-  };
-  reportJokes.push(scoreJoke);
-  console.log(reportJokes);
-}
-const score1 = document.getElementById("score1");
-const score2 = document.getElementById("score2");
-const score3 = document.getElementById("score3");
+
+  // let scoreJoke = {
+  //   joke: joke,
+  //   score: score,
+  //   date: date
+  // };
+  // console.log(scoreJoke);
+
+
 
 
 const chuckJoke =async () => {
@@ -80,12 +79,7 @@ const chuckJoke =async () => {
       joke = data.value;
       jokeBtn.innerHTML = "Next joke";
       jokeDiv.innerHTML= `
-      <p>${data.value}</p>
-      <div>
-      <button id="score1" onclick="scoreBtn(1)" class="scoreBtn">😓</button>
-      <button id="score2" onclick="scoreBtn(2)" class="scoreBtn">😐</button>
-      <button id="score3" onclick="scoreBtn(3)" class="scoreBtn">😆</button>
-      </div>`
+      <p>${data.value}</p>`+ btnScores;
 
     }
   }catch(error){
@@ -95,16 +89,19 @@ const chuckJoke =async () => {
 }
 
 function randomJoke():void {
+ 
   let random = Math.floor(Math.random() * (10 - 1 + 1)) + 1;
   if(random <=5){
     showJoke();
+
     getRandomBlob();
 
   }else{
     chuckJoke();
+
     getRandomBlob();
   }
-  
+  var emojiScore = document.querySelector('input[name="emoji"]:checked').value;
 }
 
 //___________________________BLOBS________________________

@@ -39,6 +39,13 @@ const headerApi = {
 const reportJokes = [];
 const date = new Date().toISOString();
 let joke = "";
+let score;
+const btnScores = `
+<div>
+<label class="scoreBtn"><input name="emoji" type="radio" value="1" id="score1">😓</label>
+<label class="scoreBtn"><input name="emoji" type="radio" value="2" id="score2" >😐</label>
+<label class="scoreBtn"><input name="emoji" type="radio" value="3" id="score3">😆</label>
+</div>`;
 const showJoke = () => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const respuesta = yield fetch(API_URL, headerApi);
@@ -47,30 +54,19 @@ const showJoke = () => __awaiter(void 0, void 0, void 0, function* () {
             joke = data.joke;
             jokeBtn.innerHTML = "Next joke";
             jokeDiv.innerHTML = `
-      <p>${data.joke}</p>
-      <div>
-      <button id="score1" onclick="scoreBtn(1)" class="scoreBtn">😓</button>
-      <button id="score2" onclick="scoreBtn(2)" class="scoreBtn">😐</button>
-      <button id="score3" onclick="scoreBtn(3)" class="scoreBtn">😆</button>
-      </div>`;
+      <p>${data.joke}</p>` + btnScores;
         }
     }
     catch (error) {
         console.log(error);
     }
 });
-function scoreBtn(score) {
-    let scoreJoke = {
-        joke: joke,
-        score: score,
-        date: date
-    };
-    reportJokes.push(scoreJoke);
-    console.log(reportJokes);
-}
-const score1 = document.getElementById("score1");
-const score2 = document.getElementById("score2");
-const score3 = document.getElementById("score3");
+// let scoreJoke = {
+//   joke: joke,
+//   score: score,
+//   date: date
+// };
+// console.log(scoreJoke);
 const chuckJoke = () => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const response = yield fetch('https://api.chucknorris.io/jokes/random', headerApi);
@@ -79,12 +75,7 @@ const chuckJoke = () => __awaiter(void 0, void 0, void 0, function* () {
             joke = data.value;
             jokeBtn.innerHTML = "Next joke";
             jokeDiv.innerHTML = `
-      <p>${data.value}</p>
-      <div>
-      <button id="score1" onclick="scoreBtn(1)" class="scoreBtn">😓</button>
-      <button id="score2" onclick="scoreBtn(2)" class="scoreBtn">😐</button>
-      <button id="score3" onclick="scoreBtn(3)" class="scoreBtn">😆</button>
-      </div>`;
+      <p>${data.value}</p>` + btnScores;
         }
     }
     catch (error) {
@@ -101,6 +92,7 @@ function randomJoke() {
         chuckJoke();
         getRandomBlob();
     }
+    var emojiScore = document.querySelector('input[name="emoji"]:checked').value;
 }
 //___________________________BLOBS________________________
 function getRandomBlob() {
