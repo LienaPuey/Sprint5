@@ -68,6 +68,9 @@ function scoreBtn(score) {
     reportJokes.push(scoreJoke);
     console.log(reportJokes);
 }
+const score1 = document.getElementById("score1");
+const score2 = document.getElementById("score2");
+const score3 = document.getElementById("score3");
 const chuckJoke = () => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const response = yield fetch('https://api.chucknorris.io/jokes/random', headerApi);

@@ -66,6 +66,10 @@ function scoreBtn(score:number) {
   reportJokes.push(scoreJoke);
   console.log(reportJokes);
 }
+const score1 = document.getElementById("score1");
+const score2 = document.getElementById("score2");
+const score3 = document.getElementById("score3");
+
 
 const chuckJoke =async () => {
   try {
@@ -82,6 +86,7 @@ const chuckJoke =async () => {
       <button id="score2" onclick="scoreBtn(2)" class="scoreBtn">😐</button>
       <button id="score3" onclick="scoreBtn(3)" class="scoreBtn">😆</button>
       </div>`
+
     }
   }catch(error){
     console.log(error);
@@ -89,15 +94,17 @@ const chuckJoke =async () => {
   
 }
 
-function randomJoke() {
+function randomJoke():void {
   let random = Math.floor(Math.random() * (10 - 1 + 1)) + 1;
   if(random <=5){
     showJoke();
     getRandomBlob();
+
   }else{
     chuckJoke();
     getRandomBlob();
   }
+  
 }
 
 //___________________________BLOBS________________________
