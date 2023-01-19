@@ -77,8 +77,6 @@ const chuckJoke =async () => {
   
 }
 
-
-
 function randomJoke():void {
  
   let random = Math.floor(Math.random() * (10 - 1 + 1)) + 1;
@@ -93,15 +91,14 @@ function randomJoke():void {
     getRandomBlob();
   }
   let emojiScore: HTMLElement |any = document.querySelector('input[name="emoji"]:checked');
-  score = parseInt((<HTMLInputElement>emojiScore).value);
-
+  score = parseInt((<HTMLInputElement>emojiScore).value); 
   let scoreJoke = {
     joke: joke,
     score: score,
     date: date
   };
-  reportJokes.push(scoreJoke);
-  console.log(reportJokes);
+  console.log(scoreJoke);
+  // console.log(reportJokes);
 }
 
 //___________________________BLOBS________________________

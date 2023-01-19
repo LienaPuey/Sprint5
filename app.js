@@ -93,8 +93,8 @@ function randomJoke() {
         score: score,
         date: date
     };
-    reportJokes.push(scoreJoke);
-    console.log(reportJokes);
+    console.log(scoreJoke);
+    // console.log(reportJokes);
 }
 //___________________________BLOBS________________________
 function getRandomBlob() {
