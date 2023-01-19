@@ -1,10 +1,10 @@
-const API_URL: string = "https://icanhazdadjoke.com/"
-const jokeBtn:any = document.getElementById("jokeBtn");
-const jokeDiv: HTMLElement | any = document.getElementById("jokeDiv");
-const tempInfo: any = document.getElementById("tempInfo");
-const tempIcon: any = document.getElementById("tempIcon");
+const API_URL: string = "https://icanhazdadjoke.com/";
 const API_KEY:string = '1c9c6cb101e7e4d9930b3d50a680e21a';
-const blobContainer:any = document.getElementById('containerJokes');
+const jokeBtn:HTMLElement | any  = document.getElementById("jokeBtn");
+const jokeDiv: HTMLElement | any = document.getElementById("jokeDiv");
+const tempInfo: HTMLElement | any  = document.getElementById("tempInfo");
+const tempIcon: HTMLElement | any  = document.getElementById("tempIcon");
+const blobContainer:HTMLElement | any = document.getElementById('containerJokes');
 //______________________________WEATHER_____________________________
 
 function getWeather () {
@@ -34,7 +34,7 @@ const headerApi = {
 const reportJokes: {joke: string, score:number, date:string}[]=[];
 const date :string = new Date().toISOString();
 let joke:string = "";
-let score: 1|2|3;
+let score;
 const btnScores =  `
 <div>
 <label class="scoreBtn"><input name="emoji" type="radio" value="1" id="score1">😓</label>
@@ -59,17 +59,6 @@ const showJoke = async() => {
   }
 }
 
-
-  // let scoreJoke = {
-  //   joke: joke,
-  //   score: score,
-  //   date: date
-  // };
-  // console.log(scoreJoke);
-
-
-
-
 const chuckJoke =async () => {
   try {
     const response = await fetch('https://api.chucknorris.io/jokes/random', headerApi);
@@ -88,6 +77,8 @@ const chuckJoke =async () => {
   
 }
 
+
+
 function randomJoke():void {
  
   let random = Math.floor(Math.random() * (10 - 1 + 1)) + 1;
@@ -101,7 +92,16 @@ function randomJoke():void {
 
     getRandomBlob();
   }
-  var emojiScore = document.querySelector('input[name="emoji"]:checked').value;
+  let emojiScore: HTMLElement |any = document.querySelector('input[name="emoji"]:checked');
+  score = parseInt((<HTMLInputElement>emojiScore).value);
+
+  let scoreJoke = {
+    joke: joke,
+    score: score,
+    date: date
+  };
+  reportJokes.push(scoreJoke);
+  console.log(reportJokes);
 }
 
 //___________________________BLOBS________________________

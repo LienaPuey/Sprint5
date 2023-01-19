@@ -9,11 +9,11 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 const API_URL = "https://icanhazdadjoke.com/";
+const API_KEY = '1c9c6cb101e7e4d9930b3d50a680e21a';
 const jokeBtn = document.getElementById("jokeBtn");
 const jokeDiv = document.getElementById("jokeDiv");
 const tempInfo = document.getElementById("tempInfo");
 const tempIcon = document.getElementById("tempIcon");
-const API_KEY = '1c9c6cb101e7e4d9930b3d50a680e21a';
 const blobContainer = document.getElementById('containerJokes');
 //______________________________WEATHER_____________________________
 function getWeather() {
@@ -61,12 +61,6 @@ const showJoke = () => __awaiter(void 0, void 0, void 0, function* () {
         console.log(error);
     }
 });
-// let scoreJoke = {
-//   joke: joke,
-//   score: score,
-//   date: date
-// };
-// console.log(scoreJoke);
 const chuckJoke = () => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const response = yield fetch('https://api.chucknorris.io/jokes/random', headerApi);
@@ -92,7 +86,15 @@ function randomJoke() {
         chuckJoke();
         getRandomBlob();
     }
-    var emojiScore = document.querySelector('input[name="emoji"]:checked').value;
+    let emojiScore = document.querySelector('input[name="emoji"]:checked');
+    score = parseInt(emojiScore.value);
+    let scoreJoke = {
+        joke: joke,
+        score: score,
+        date: date
+    };
+    reportJokes.push(scoreJoke);
+    console.log(reportJokes);
 }
 //___________________________BLOBS________________________
 function getRandomBlob() {
