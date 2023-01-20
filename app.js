@@ -87,14 +87,16 @@ function randomJoke() {
         getRandomBlob();
     }
     let emojiScore = document.querySelector('input[name="emoji"]:checked');
-    score = parseInt(emojiScore.value);
-    let scoreJoke = {
-        joke: joke,
-        score: score,
-        date: date
-    };
-    console.log(scoreJoke);
-    // console.log(reportJokes);
+    if (emojiScore != null) {
+        let score = parseInt(emojiScore.value);
+        let scoreJoke = {
+            joke: joke,
+            score: score,
+            date: date
+        };
+        reportJokes.push(scoreJoke);
+        console.log(reportJokes);
+    }
 }
 //___________________________BLOBS________________________
 function getRandomBlob() {

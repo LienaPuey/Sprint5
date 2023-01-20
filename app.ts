@@ -91,14 +91,16 @@ function randomJoke():void {
     getRandomBlob();
   }
   let emojiScore: HTMLElement |any = document.querySelector('input[name="emoji"]:checked');
-  score = parseInt((<HTMLInputElement>emojiScore).value); 
-  let scoreJoke = {
+  if(emojiScore != null){
+    let score = parseInt((<HTMLInputElement>emojiScore).value);
+    let scoreJoke = {
     joke: joke,
     score: score,
     date: date
   };
-  console.log(scoreJoke);
-  // console.log(reportJokes);
+  reportJokes.push(scoreJoke);
+  console.log(reportJokes);
+  }
 }
 
 //___________________________BLOBS________________________
